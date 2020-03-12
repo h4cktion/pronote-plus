@@ -14,25 +14,30 @@ class MyInput extends React.Component {
         super();
  
         this.state = {
-           
+           value:''
         }
+        this.onChange = this.onChange.bind(this);
     }
 
 
     onChange(e){
         e.preventDefault();
+        this.setState({value : e.currentTarget.value})
     }
   
 
     componentWillMount(){
-        console.log("myInput", this.props)
+        this.setState({value : this.props.value})
     }
 
 
+    componentWillReceiveProps(next){
+        this.setState({value : next.value})
+    }
 
     render() {
         return <input 
-                    value = {this.props.value}
+                    value = {this.state.value}
                     onChange = {this.onChange}
                     placeholder = {this.props.placeholder} 
                     type = {this.props.type}

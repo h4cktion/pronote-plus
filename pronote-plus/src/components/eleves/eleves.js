@@ -21,6 +21,7 @@ class Eleves extends React.Component {
         }
         this.navigateTo = this.navigateTo.bind(this);
         this.addEleve = this.addEleve.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     navigateTo(e){
@@ -45,7 +46,7 @@ class Eleves extends React.Component {
         let  newEleve = {
             nom: '',
             prenom: '',
-            genre : null,
+            genre : '',
             moyenne : 0,
             comportement : '',
             travail : '',
@@ -54,6 +55,17 @@ class Eleves extends React.Component {
         let eleves = _.cloneDeep(this.state.eleves);
         eleves.push(newEleve);
         this.setState({eleves})
+    }
+
+    delete(e){
+        let eleves = _.cloneDeep(this.state.eleves);
+        
+        let newEleves = eleves.filter(eleve =>  {
+          console.log("in filter : ", eleve.nom , "  ",e, " = ",eleve.nom != e)
+            return eleve.nom != e
+        })
+        console.log("new : ", newEleves)
+        this.setState({eleves : newEleves});
     }
 
     render() {
@@ -75,13 +87,17 @@ class Eleves extends React.Component {
                     <th>Comportement</th>
                     <th>Travail</th>
                     <th>Participation</th>
+                    <th>Actions</th>
                     </tr>
                 </thead>
-                    {
+                <tbody>
+                {
                     this.state.eleves.map( (e,i) => 
-                            <Eleve key={i} eleve={e} />
+                            <Eleve key={i} eleve={e} delete={this.delete} />
                         )
                 }
+                </tbody>
+                   
                 </Table>
             </Col>
             

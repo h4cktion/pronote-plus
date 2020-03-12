@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Dropdown } from 'react-bootstrap';
-import { IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
+import { IoMdTrash,IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
 import propTypes from 'prop-types';
 import {  goTo } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ class Eleve extends React.Component {
             
         }
         this.addEleve = this.addEleve.bind(this);
+        this.delete = this.delete.bind(this);
     }
 
     navigateTo(e){
@@ -36,8 +37,17 @@ class Eleve extends React.Component {
 
     }
 
+    componentWillReceiveProps(nextProps){
+        this.feedField(nextProps.eleve);
+
+    }
+
     addEleve(){
 
+    }
+
+    delete(e){
+        this.props.delete(e.currentTarget.id);
     }
 
 
@@ -50,13 +60,15 @@ class Eleve extends React.Component {
                     <td><MyInput value={this.state.eleve.comportement} type="text" placeholder="nom" className="small"/></td>
                     <td><MyInput value={this.state.eleve.travail} type="text" placeholder="nom" className="small"/></td>
                     <td><MyInput value={this.state.eleve.participation} type="text" placeholder="nom" className="small"/></td>           
+                    <td><IoMdTrash className="red" id={this.state.eleve.nom} onClick={this.delete} title="supprimer"/></td>           
                 </tr>;
 
     }
 }
 
 Eleve.propTypes = {
-    goTo: propTypes.func.isRequired
+    goTo: propTypes.func.isRequired,
+    delete: propTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
