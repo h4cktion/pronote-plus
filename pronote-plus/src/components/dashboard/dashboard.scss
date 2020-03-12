@@ -1,5 +1,10 @@
+$colorTopBar : #00554C;
+$colorSideMenuBG : #f9fafc;
+$fontColorSideMenu : #687484;
+$colorMenuSelected : #eff2f7;
+
 .header{
-    background-color: #561059;
+    background-color: $colorTopBar;
     text-align: left;
     padding-left: 2%;
 }
@@ -24,8 +29,8 @@
 }
 
 .menu{
-    background-color: #f9fafc;
-    color: #687484;
+    background-color: $colorSideMenuBG;
+    color: $fontColorSideMenu;
     height: 95vh;
 }
 
@@ -38,20 +43,20 @@
 .menu a{
     text-align: left;
     text-decoration: none;
-    color: #687484;
+    color: $fontColorSideMenu;
     font-size: 1rem;
 }
 
 .menu a div{
     padding: .75rem 1.5rem;
-    color: #687484;
+    color: $fontColorSideMenu;
     text-decoration: none;
 }
 
 .selected{
-    background-color: #eff2f7;
+    background-color: $colorMenuSelected;
 }
 
 .menu a div:hover{
-    background-color: #eff2f7;
+    background-color: $colorMenuSelected;
 }
