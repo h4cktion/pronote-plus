@@ -1,0 +1,33 @@
+$white: white;
+
+.home{
+    padding-top: 2%;
+    background-image: url(https://www.index-education.com/contenu/img/fr/bkg-pn-2019.png);
+    color : $white;
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    h1{
+        padding-top: 10%;
+        font-weight: 700;
+        font-size: 43px;
+    }
+
+    a, a:hover{
+        padding: 0.3em 3.3em 0.3em 3.7em;
+        border: 1px solid white;
+        color: white;
+        text-decoration: none;
+    }
+
+    .logo{
+        height: 83px;
+        width: 243px;
+    }
+}
+
+
+
+
