@@ -5,6 +5,8 @@ import './dashboard.scss';
 import propTypes from 'prop-types';
 import {  goTo } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
+import Eleves from '../eleves/eleves';
+
 
 
 class DashBoard extends React.Component {
@@ -59,6 +61,8 @@ class DashBoard extends React.Component {
     }
 
 
+
+
     render() {
         return <div className="justify-content-md-center">
             <Row>
@@ -105,7 +109,7 @@ class DashBoard extends React.Component {
                         <h2>DASHBOARD</h2>
                     }
                     {this.state.elevesActive &&
-                        <h2>ELEVES</h2>
+                        <Eleves />
                     }
                     {this.state.appreciationActive &&
                         <h2>APPRECIATIONS</h2>
