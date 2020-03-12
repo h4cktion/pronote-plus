@@ -1,4 +1,4 @@
-import {  GO_TO, LOAD_ELEVES } from '../actions/types';
+import {  GO_TO, LOAD_ELEVES, DELETE_ELEVE } from '../actions/types';
 import _ from 'lodash';
 
 const initialState = {
@@ -23,6 +23,15 @@ export default function (state = initialState, action){
             return {
                 ...state,
                 eleves : action.payload
+            }
+
+        case DELETE_ELEVE:
+            let eleves = _.cloneDeep(state.eleves);
+            eleves = eleves.filter(e => e.nom != action.payload)
+            
+            return {
+                ...state,
+                eleves 
             }
 
         default:

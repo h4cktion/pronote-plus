@@ -2,7 +2,7 @@ import React from 'react';
 import { Table,Row, Col, Dropdown } from 'react-bootstrap';
 import { IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
 import propTypes from 'prop-types';
-import {  goTo, loadEleves } from '../../actions/pronoteActions';
+import {  goTo, loadEleves, deleteEleve } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
 import Eleve from './eleve';
 import _ from'lodash';
@@ -31,9 +31,7 @@ class Eleves extends React.Component {
    componentWillMount(){
        let self = this;
        if(this.state.eleves === null){
-
-           this.setState({eleves : this.props.eleves},
-            ()=> console.log("here",self.state.eleves));
+           this.setState({eleves : this.props.eleves});
        }
    }
 
@@ -57,10 +55,7 @@ class Eleves extends React.Component {
     }
 
     delete(e){
-        let eleves = _.cloneDeep(this.state.eleves);
-        
-        let newEleves = eleves.filter(eleve =>  eleve.nom != e)
-        this.setState({eleves : newEleves});
+        this.props.deleteEleve(e);
     }
 
     render() {
@@ -104,8 +99,9 @@ class Eleves extends React.Component {
 }
 
 Eleves.propTypes = {
-    goTo: propTypes.func.isRequired,
-    loadEleves: propTypes.func.isRequired
+    goTo : propTypes.func.isRequired,
+    loadEleves : propTypes.func.isRequired,
+    deleteEleve : propTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -116,4 +112,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { goTo, loadEleves })(Eleves);
+export default connect(mapStateToProps, { goTo, loadEleves, deleteEleve })(Eleves);

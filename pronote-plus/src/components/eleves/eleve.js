@@ -27,9 +27,7 @@ class Eleve extends React.Component {
 
     feedField(eleve){
         let self =this;
-        this.setState({eleve},()=>{
-            console.log("eleve : ",self.state.eleve)
-        });
+        this.setState({eleve});
     }
    
     componentWillMount(){
