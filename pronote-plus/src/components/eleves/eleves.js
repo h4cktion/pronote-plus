@@ -2,7 +2,7 @@ import React from 'react';
 import { Table,Row, Col, Dropdown } from 'react-bootstrap';
 import { IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
 import propTypes from 'prop-types';
-import {  goTo, loadEleves, deleteEleve, addEleve } from '../../actions/pronoteActions';
+import {  goTo, loadEleves, addEleve } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
 import Eleve from './eleve';
 import _ from'lodash';
@@ -22,7 +22,6 @@ class Eleves extends React.Component {
 
         this.navigateTo = this.navigateTo.bind(this);
         this.addEleve = this.addEleve.bind(this);
-        this.delete = this.delete.bind(this);
     }
 
     navigateTo(e){
@@ -54,10 +53,6 @@ class Eleves extends React.Component {
         this.props.addEleve(newEleve);
     }
 
-    delete(id){
-        console.log("delete",id)
-        this.props.deleteEleve(id);
-    }
 
     render() {
         return <div className="justify-content-md-center eleves">
@@ -84,7 +79,7 @@ class Eleves extends React.Component {
                 <tbody>
                 {
                     this.state.eleves.map( (e,i) => 
-                            <Eleve key={i} eleve={e}  delete={this.delete} />
+                            <Eleve key={i} eleve={e} />
                         )
                 }
                 </tbody>
@@ -102,7 +97,6 @@ class Eleves extends React.Component {
 Eleves.propTypes = {
     goTo : propTypes.func.isRequired,
     loadEleves : propTypes.func.isRequired,
-    deleteEleve : propTypes.func.isRequired,
     addEleve : propTypes.func.isRequired,
     
 }
@@ -115,4 +109,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { goTo, loadEleves, deleteEleve, addEleve })(Eleves);
+export default connect(mapStateToProps, { goTo, loadEleves, addEleve })(Eleves);

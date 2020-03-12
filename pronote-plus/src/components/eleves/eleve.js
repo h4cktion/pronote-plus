@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Dropdown } from 'react-bootstrap';
 import { IoMdTrash,IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
 import propTypes from 'prop-types';
-import {  goTo } from '../../actions/pronoteActions';
+import {  goTo, deleteEleve } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
 import MyInput from '../communs/myInput';
 import './eleves.scss';
@@ -45,7 +45,7 @@ class Eleve extends React.Component {
     }
 
     delete(e){
-        this.props.delete(e.currentTarget.id);
+        this.props.deleteEleve(e.currentTarget.id);
     }
 
 
@@ -66,7 +66,7 @@ class Eleve extends React.Component {
 
 Eleve.propTypes = {
     goTo: propTypes.func.isRequired,
-    delete: propTypes.func.isRequired
+    deleteEleve: propTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
@@ -76,4 +76,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { goTo })(Eleve);
+export default connect(mapStateToProps, { goTo,deleteEleve })(Eleve);
