@@ -1,4 +1,4 @@
-import {  GO_TO, LOAD_ELEVES, DELETE_ELEVE } from './types';
+import {  GO_TO, LOAD_ELEVES, DELETE_ELEVE, ADD_ELEVE } from './types';
 
 export const goTo = (newDestination) => dispatch => {
     dispatch({
@@ -19,5 +19,12 @@ export const deleteEleve = (id) => dispatch => {
     dispatch({
         type: DELETE_ELEVE,
         payload: id
+    });
+}
+
+export const addEleve = (eleve) => dispatch => {
+    dispatch({
+        type: ADD_ELEVE,
+        payload: eleve
     });
 }

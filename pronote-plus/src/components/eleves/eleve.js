@@ -58,7 +58,7 @@ class Eleve extends React.Component {
                     <td><MyInput value={this.state.eleve.comportement} type="text" placeholder="nom" className="small"/></td>
                     <td><MyInput value={this.state.eleve.travail} type="text" placeholder="nom" className="small"/></td>
                     <td><MyInput value={this.state.eleve.participation} type="text" placeholder="nom" className="small"/></td>           
-                    <td><IoMdTrash className="red" id={this.state.eleve.nom} onClick={this.delete} title="supprimer"/></td>           
+                    <td><IoMdTrash className="red" id={this.state.eleve.id} onClick={this.delete} title="supprimer"/></td>           
                 </tr>;
 
     }
