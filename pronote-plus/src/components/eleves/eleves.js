@@ -2,7 +2,7 @@ import React from 'react';
 import { Table,Row, Col, Dropdown } from 'react-bootstrap';
 import { IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
 import propTypes from 'prop-types';
-import {  goTo } from '../../actions/pronoteActions';
+import {  goTo, loadEleves } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
 import Eleve from './eleve';
 import _ from'lodash';
@@ -16,9 +16,9 @@ class Eleves extends React.Component {
         super();
  
         this.state = {
-            eleves:[],
-           
+            eleves: null,
         }
+
         this.navigateTo = this.navigateTo.bind(this);
         this.addEleve = this.addEleve.bind(this);
         this.delete = this.delete.bind(this);
@@ -28,18 +28,17 @@ class Eleves extends React.Component {
         this.props.goTo(e.currentTarget.id)
     }
 
-   
-    initEleve(){
-        let elevesTest = [
-            {nom: 'ANDERSON', prenom : 'Annetya',genre: true, moyenne: 15, comportement: 'calme', travail : 'serieux', participation: 'effort à faire'},
-            {nom: 'BERTOLAMI', prenom : 'Nathan',genre: false, moyenne: 13, comportement: 'calme', travail : 'serieux', participation: 'pertinente'},
-            {nom: 'BUQUET', prenom : 'Loukas',genre: false, moyenne: 15, comportement: 'bavardage', travail : 'serieux', participation: 'aucune'},
-        ]
-        this.setState({eleves : elevesTest});
-    }
+   componentWillMount(){
+       let self = this;
+       if(this.state.eleves === null){
 
-    componentWillMount(){
-        this.initEleve();
+           this.setState({eleves : this.props.eleves},
+            ()=> console.log("here",self.state.eleves));
+       }
+   }
+
+    componentWillReceiveProps(nextProps){
+        this.setState({eleves : nextProps.eleves});
     }
 
     addEleve(){
@@ -60,11 +59,7 @@ class Eleves extends React.Component {
     delete(e){
         let eleves = _.cloneDeep(this.state.eleves);
         
-        let newEleves = eleves.filter(eleve =>  {
-          console.log("in filter : ", eleve.nom , "  ",e, " = ",eleve.nom != e)
-            return eleve.nom != e
-        })
-        console.log("new : ", newEleves)
+        let newEleves = eleves.filter(eleve =>  eleve.nom != e)
         this.setState({eleves : newEleves});
     }
 
@@ -109,14 +104,16 @@ class Eleves extends React.Component {
 }
 
 Eleves.propTypes = {
-    goTo: propTypes.func.isRequired
+    goTo: propTypes.func.isRequired,
+    loadEleves: propTypes.func.isRequired
 }
 
 const mapStateToProps = state => {
     return {
-        menu : state.pronote.menu
+        menu : state.pronote.menu,
+        eleves : state.pronote.eleves
     }
 }
 
 
-export default connect(mapStateToProps, { goTo })(Eleves);
+export default connect(mapStateToProps, { goTo, loadEleves })(Eleves);
