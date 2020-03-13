@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Dropdown } from 'react-bootstrap';
-import { IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
+import { IoIosStats,IoMdSettings,IoMdHelpCircleOutline, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
 import './dashboard.scss';
 import propTypes from 'prop-types';
 import {  goTo } from '../../actions/pronoteActions';
@@ -89,17 +89,17 @@ class DashBoard extends React.Component {
                     </a>
                     <a href="#" onClick={this.navigateTo} id="ELEVES" > 
                         <div style={{ width: '105%' }} className={this.state.elevesActive ? "selected" : ""}> 
-                            <IoMdPaperPlane /> Elèves
+                            <IoIosPeople /> Elèves
                         </div> 
                     </a>
                     <a href="#" onClick={this.navigateTo} id="APPRECIATION" > 
                         <div style={{ width: '105%' }} className={this.state.appreciationActive ? "selected" : ""}> 
-                            <IoIosPeople /> Appréciations
+                            <IoIosStats /> Appréciations
                         </div> 
                     </a>
                     <a href="#" onClick={this.navigateTo} id="AIDE" > 
                         <div style={{ width: '105%' }} className={this.state.aideActive ? "selected" : ""}> 
-                        <IoIosPerson /> Aide
+                        <IoMdHelpCircleOutline /> Aide
                         </div> 
                     </a>
                     

@@ -22,7 +22,16 @@ class MyInput extends React.Component {
 
     onChange(e){
         e.preventDefault();
-        this.setState({value : e.currentTarget.value})
+        let self = this;
+        let data = {    id : this.props.id,
+            value: e.currentTarget.value,
+            idEleve : this.props.idEleve
+        }
+        this.setState({value : e.currentTarget.value},()=>{
+            self.props.change(data);
+        });
+       
+        
     }
   
 

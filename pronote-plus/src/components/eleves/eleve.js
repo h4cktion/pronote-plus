@@ -18,7 +18,7 @@ class Eleve extends React.Component {
             id: '',
             nom: '',
             prenom: '',
-            genre: '',
+            sexe: '',
             moyenne: '',
             comportement: '',
             travail: '',
@@ -35,7 +35,7 @@ class Eleve extends React.Component {
             id: this.state.id,
             nom: this.state.nom,
             prenom: this.state.prenom,
-            genre: this.state.genre,
+            sexe: this.state.sexe,
             moyenne: this.state.moyenne,
             comportement: this.state.comportement,
             travail: this.state.travail,
@@ -44,25 +44,23 @@ class Eleve extends React.Component {
     }
 
     onChange(e){
+        console.log("change ",e)
         let self = this;
-        console.log("[e.id]",e.id)
-        console.log("e.value",e.value)
         this.setState({ [e.id]: e.value },()=>{
-            console.log(self.state.genre)
-            this.props.updateEleve(self.createUpdatedEleve());
+                self.props.updateEleve(self.createUpdatedEleve());           
         });
         
     }
 
     feedField(eleve){
-        this.setState({id: this.props.eleve.id});
-        this.setState({nom: this.props.eleve.nom});
-        this.setState({prenom: this.props.eleve.prenom});
-        this.setState({genre: this.props.eleve.genre});
-        this.setState({moyenne: this.props.eleve.moyenne});
-        this.setState({comportement: this.props.eleve.comportement});
-        this.setState({travail: this.props.eleve.travail});
-        this.setState({participation: this.props.eleve.participation});
+        this.setState({id: eleve.id});
+        this.setState({nom: eleve.nom});
+        this.setState({prenom: eleve.prenom});
+        this.setState({sexe: eleve.sexe});
+        this.setState({moyenne: eleve.moyenne});
+        this.setState({comportement: eleve.comportement});
+        this.setState({travail: eleve.travail});
+        this.setState({participation: eleve.participation});
     }
    
     componentWillMount(){
@@ -70,8 +68,8 @@ class Eleve extends React.Component {
 
     }
 
-    componentWillReceiveProps(nextProps){
-        this.feedField(nextProps.eleve);
+    componentWillReceiveProps(next){
+        this.feedField(next.eleve);
 
     }
 
@@ -86,14 +84,13 @@ class Eleve extends React.Component {
 
     render() {
         return  <tr>    
-                    <td><MyInput value={this.state.nom} type="text" placeholder="nom" className="small"/></td>
-                    <td><MyInput value={this.state.prenom} type="text" placeholder="nom" className="small"/></td>
-                    {/* <td><MyInput value={this.state.eleve.genre} type="text" placeholder="nom" className="small"/></td> */}
-                    <td><Select  id="genre" options={this.props.genre} eleve={this.props.eleve} change={this.onChange} className="small"/></td>
-                    <td><MyInput value={this.state.moyenne} type="text" placeholder="nom" className="small"/></td>
-                    <td><MyInput value={this.state.comportement} type="text" placeholder="nom" className="small"/></td>
-                    <td><MyInput value={this.state.travail} type="text" placeholder="nom" className="small"/></td>
-                    <td><MyInput value={this.state.participation} type="text" placeholder="nom" className="small"/></td>           
+                    <td><MyInput id="nom" value={this.state.nom} idEleve={this.state.id} change={this.onChange} type="text" placeholder="nom" className="small"/></td>
+                    <td><MyInput id="prenom" value={this.state.prenom} idEleve={this.state.id} change={this.onChange} type="text" placeholder="prenom" className="small"/></td>
+                    <td><Select  id="sexe" options={this.props.sexe} value={this.state.sexe} idEleve={this.state.id} change={this.onChange} className="small"/></td>
+                    <td><MyInput id="moyenne" value={this.state.moyenne} type="text" placeholder="12" idEleve={this.state.id} change={this.onChange} className="small"/></td>
+                    <td><Select  id="comportement" options={this.props.comportement} value={this.state.comportement} idEleve={this.state.id} change={this.onChange} className="small"/></td>
+                    <td><Select  id="travail" options={this.props.travail} value={this.state.travail} idEleve={this.state.id} change={this.onChange} className="small"/></td>
+                    <td><Select  id="participation" options={this.props.participation} value={this.state.participation} idEleve={this.state.id} change={this.onChange} className="small"/></td>        
                     <td><IoMdTrash className="red" id={this.state.id} onClick={this.delete} title="supprimer"/></td>           
                 </tr>;
 
@@ -108,7 +105,10 @@ Eleve.propTypes = {
 const mapStateToProps = state => {
     return {
         menu : state.pronote.menu,
-        genre : state.pronote.genre
+        sexe : state.pronote.sexe,
+        comportement : state.pronote.comportement,
+        travail : state.pronote.travail,
+        participation : state.pronote.participation
     }
 }
 

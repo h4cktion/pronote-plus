@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table,Row, Col, Dropdown } from 'react-bootstrap';
-import { IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
+import { IoMdArchive, IoIosPersonAdd ,IoIosCloseCircleOutline } from 'react-icons/io';
 import propTypes from 'prop-types';
 import { loadEleves, addEleve } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
@@ -39,15 +39,18 @@ class Eleves extends React.Component {
    }
 
     componentWillReceiveProps(nextProps){
+        let self = this;
         this.setState({eleves : nextProps.eleves});
+        
     }
+
 
     addEleve(){
         let  newEleve = {
             id : uuidv1(),
             nom: '',
             prenom: '',
-            genre : '',
+            sexe : '',
             moyenne : 0,
             comportement : '',
             travail : '',
@@ -58,34 +61,38 @@ class Eleves extends React.Component {
     
     showInputFile(){
         this.setState({showImportFile : !this.state.showImportFile});
+
     }
 
     render() {
         return <div className="justify-content-md-center eleves">
            <Row>
-               <Col md={{span: 4, offset : 8}}>
+               <Col md={{span: 2, offset : 10}}>
                     { !this.state.showImportFile && 
-                        <div>
-                            <button onClick={this.showInputFile}>Importer une liste d'élèves</button>
-                            <button onClick={this.addEleve}>Ajouter un élève</button>    
+                        <div className="actionButtons">
+                            <IoMdArchive onClick={this.showInputFile} title="Importer une liste d'élèves" className="greenIcon" />
+                            &nbsp;&nbsp;&nbsp;
+                            <IoIosPersonAdd onClick={this.addEleve} title="Ajouter un élève" className="greenIcon" />    
                         </div>
                     }
                     { this.state.showImportFile && 
-                        <div>
-                            <button onClick={this.showInputFile}>Retour</button>
+                        <div className="actionButtons">
+                            <IoIosCloseCircleOutline onClick={this.showInputFile} title="Annuler" className="redIcon" />
                         </div>
                     }
             
                </Col>
            </Row>
            { !this.state.showImportFile &&
+
             <Col md={{span:10 , offset : 1 }}>
-                <Table responsive>
+                <div className="tableEleves">
+                <Table responsive >
                 <thead>
                     <tr>
                     <th>Nom</th>
                     <th>Prenom</th>
-                    <th>Genre</th>
+                    <th>Sexe</th>
                     <th>Moyenne</th>
                     <th>Comportement</th>
                     <th>Travail</th>
@@ -102,11 +109,12 @@ class Eleves extends React.Component {
                 </tbody>
                    
                 </Table>
+                </div>
             </Col>
            }
             
             { this.state.showImportFile &&
-                <InputFile />
+                <InputFile showInputFile={this.showInputFile} />
             }
             
            

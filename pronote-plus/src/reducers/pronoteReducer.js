@@ -3,12 +3,38 @@ import _ from 'lodash';
 import { v1 as uuidv1 } from 'uuid';
 
 const initialState = {
-    eleves : [
-        {id : uuidv1(),nom: 'ANDERSON', prenom : 'Annetya',genre: 'F', moyenne: 15, comportement: 'calme', travail : 'serieux', participation: 'effort à faire'},
-        {id : uuidv1(),nom: 'BERTOLAMI', prenom : 'Nathan',genre: 'H', moyenne: 13, comportement: 'calme', travail : 'serieux', participation: 'pertinente'},
-        {id : uuidv1(),nom: 'BUQUET', prenom : 'Loukas',genre: '', moyenne: 15, comportement: 'bavardage', travail : 'serieux', participation: 'aucune'},
+    eleves : [],
+    sexe: [{id: 0,value:"selectionner "},{id: 1,value:"M"}, {id:2,value : "F"}],
+    comportement : [
+        {id: 0 ,value : "selectionner "},
+        {id: 1 ,value : "Bavardage"}, 
+        {id: 2 ,value : "Calme"},
+        {id: 3 ,value : "Correct"},
+        {id: 4 ,value : "Exemplaire"},
+        {id: 5 ,value : "Insupportable"},
+        {id: 6 ,value : "Limite"},
+        {id: 7 ,value : "Logorrhée"},
     ],
-    genre: [{id: 0,value:"selectionner "},{id: 1,value:"H"}, {id:2,value : "F"}],
+    travail : [
+        {id: 0 ,value : "selectionner "},
+        {id: 1 ,value : "Sérieux"}, 
+        {id: 2 ,value : "Insuffisant"},
+        {id: 3 ,value : "Inexistant"},
+        {id: 4 ,value : "Minimum"},
+        {id: 5 ,value : "Difficulté"},
+        {id: 6 ,value : "Correct"}
+    ],
+    participation : [
+        {id: 0 ,value : "selectionner "},
+        {id: 1 ,value : "Effort à faire"}, 
+        {id: 2 ,value : "Pertinente"},
+        {id: 3 ,value : "Aucune"},
+        {id: 4 ,value : "Correcte"},
+        {id: 5 ,value : "Bonne"},
+        {id: 6 ,value : "Inadaptée"},
+        {id: 7 ,value : "Rare"},
+        {id: 8 ,value : "Intensifier"}
+    ],
     menu : "DASHBOARD" 
 };
 
