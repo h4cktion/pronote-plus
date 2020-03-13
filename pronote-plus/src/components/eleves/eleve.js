@@ -2,9 +2,10 @@ import React from 'react';
 import { Row, Col, Dropdown } from 'react-bootstrap';
 import { IoMdTrash,IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson, IoIosPeople } from 'react-icons/io';
 import propTypes from 'prop-types';
-import {  goTo, deleteEleve } from '../../actions/pronoteActions';
+import {  deleteEleve } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
 import MyInput from '../communs/myInput';
+import Select from '../communs/select';
 import './eleves.scss';
 
 
@@ -21,9 +22,6 @@ class Eleve extends React.Component {
         this.delete = this.delete.bind(this);
     }
 
-    navigateTo(e){
-        this.props.goTo(e.currentTarget.id)
-    }
 
     feedField(eleve){
         let self =this;
@@ -53,7 +51,8 @@ class Eleve extends React.Component {
         return  <tr>    
                     <td><MyInput value={this.state.eleve.nom} type="text" placeholder="nom" className="small"/></td>
                     <td><MyInput value={this.state.eleve.prenom} type="text" placeholder="nom" className="small"/></td>
-                    <td><MyInput value={this.state.eleve.genre} type="text" placeholder="nom" className="small"/></td>
+                    {/* <td><MyInput value={this.state.eleve.genre} type="text" placeholder="nom" className="small"/></td> */}
+                    <td><Select   className="small"/></td>
                     <td><MyInput value={this.state.eleve.moyenne} type="text" placeholder="nom" className="small"/></td>
                     <td><MyInput value={this.state.eleve.comportement} type="text" placeholder="nom" className="small"/></td>
                     <td><MyInput value={this.state.eleve.travail} type="text" placeholder="nom" className="small"/></td>
@@ -65,7 +64,6 @@ class Eleve extends React.Component {
 }
 
 Eleve.propTypes = {
-    goTo: propTypes.func.isRequired,
     deleteEleve: propTypes.func.isRequired
 }
 
@@ -76,4 +74,4 @@ const mapStateToProps = state => {
 }
 
 
-export default connect(mapStateToProps, { goTo,deleteEleve })(Eleve);
+export default connect(mapStateToProps, { deleteEleve })(Eleve);
