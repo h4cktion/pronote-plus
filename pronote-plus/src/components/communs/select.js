@@ -14,7 +14,7 @@ class Select extends React.Component {
         super();
  
         this.state = {
-            options:[{id: 0,value:"selectionner "},{id: 1,value:"H"}, {id:2,value : "F"}],
+            options:[],
             value: ''
         }
         this.onChange = this.onChange.bind(this);
@@ -23,13 +23,21 @@ class Select extends React.Component {
 
     onChange(e){
         e.preventDefault();
-        console.log("select change",e.currentTarget)
-        this.setState({value : e.currentTarget.value})
+        //console.log("select onchange : ",e.currentTarget.value)
+        //console.log("this.props.eleve[id]",this.props.eleve[this.props.id])
+        let data = {    id : e.currentTarget.id,
+                        value: e.currentTarget.value,
+                        idEleve : this.props.eleve.id
+                     }
+        this.props.change(data);
     }
   
 
     componentWillMount(){
-       // this.setState({value : this.props.value})
+        if(this.props.eleve[this.props.id] != ''){
+            this.setState({ value : this.props.eleve[this.props.id] })
+        }  
+       
     }
 
 
@@ -38,8 +46,8 @@ class Select extends React.Component {
     }
 
     render() {
-        return  <select id="genre" onChange={this.onChange} >
-                    {this.state.options.map(option =>
+        return  <select id={this.props.id} onChange={this.onChange} value={this.state.value}>
+                    {this.props.options.map(option =>
                         <option key={option.id}   value={option.value}>{option.value}</option>    
                     )}
                 </select>;

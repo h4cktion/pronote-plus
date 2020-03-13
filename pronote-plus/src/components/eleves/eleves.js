@@ -4,6 +4,7 @@ import { IoMdPaperPlane,IoMdSettings, IoIosSpeedometer, IoIosPower, IoIosPerson,
 import propTypes from 'prop-types';
 import { loadEleves, addEleve } from '../../actions/pronoteActions';
 import { connect } from 'react-redux';
+import InputFile from '../communs/inputFile/inputFile';
 import Eleve from './eleve';
 import _ from'lodash';
 import './eleves.scss';
@@ -18,10 +19,12 @@ class Eleves extends React.Component {
  
         this.state = {
             eleves: null,
+            showImportFile : false,
         }
 
         this.navigateTo = this.navigateTo.bind(this);
         this.addEleve = this.addEleve.bind(this);
+        this.showInputFile = this.showInputFile.bind(this);
     }
 
     navigateTo(e){
@@ -52,16 +55,30 @@ class Eleves extends React.Component {
         };
         this.props.addEleve(newEleve);
     }
-
+    
+    showInputFile(){
+        this.setState({showImportFile : !this.state.showImportFile});
+    }
 
     render() {
         return <div className="justify-content-md-center eleves">
            <Row>
                <Col md={{span: 4, offset : 8}}>
-                   <button>Importer une liste d'élèves</button>
-                    <button onClick={this.addEleve}>Ajouter un élève</button>
+                    { !this.state.showImportFile && 
+                        <div>
+                            <button onClick={this.showInputFile}>Importer une liste d'élèves</button>
+                            <button onClick={this.addEleve}>Ajouter un élève</button>    
+                        </div>
+                    }
+                    { this.state.showImportFile && 
+                        <div>
+                            <button onClick={this.showInputFile}>Retour</button>
+                        </div>
+                    }
+            
                </Col>
            </Row>
+           { !this.state.showImportFile &&
             <Col md={{span:10 , offset : 1 }}>
                 <Table responsive>
                 <thead>
@@ -86,6 +103,11 @@ class Eleves extends React.Component {
                    
                 </Table>
             </Col>
+           }
+            
+            { this.state.showImportFile &&
+                <InputFile />
+            }
             
            
                        
