@@ -23,10 +23,10 @@ class Select extends React.Component {
 
     onChange(e){
         e.preventDefault();
-        let data = {    id : e.currentTarget.id,
-                        value: e.currentTarget.value,
-                        idEleve : this.props.idEleve
-                     }
+        let data = {    
+            id : e.currentTarget.id,
+            value: e.currentTarget.value
+            }
         this.props.change(data);
     }
   

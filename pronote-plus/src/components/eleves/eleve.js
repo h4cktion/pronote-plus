@@ -44,7 +44,6 @@ class Eleve extends React.Component {
     }
 
     onChange(e){
-        console.log("change ",e)
         let self = this;
         this.setState({ [e.id]: e.value },()=>{
                 self.props.updateEleve(self.createUpdatedEleve());           
@@ -84,13 +83,13 @@ class Eleve extends React.Component {
 
     render() {
         return  <tr>    
-                    <td><MyInput id="nom" value={this.state.nom} idEleve={this.state.id} change={this.onChange} type="text" placeholder="nom" className="small"/></td>
-                    <td><MyInput id="prenom" value={this.state.prenom} idEleve={this.state.id} change={this.onChange} type="text" placeholder="prenom" className="small"/></td>
-                    <td><Select  id="sexe" options={this.props.sexe} value={this.state.sexe} idEleve={this.state.id} change={this.onChange} className="small"/></td>
-                    <td><MyInput id="moyenne" value={this.state.moyenne} type="text" placeholder="12" idEleve={this.state.id} change={this.onChange} className="small"/></td>
-                    <td><Select  id="comportement" options={this.props.comportement} value={this.state.comportement} idEleve={this.state.id} change={this.onChange} className="small"/></td>
-                    <td><Select  id="travail" options={this.props.travail} value={this.state.travail} idEleve={this.state.id} change={this.onChange} className="small"/></td>
-                    <td><Select  id="participation" options={this.props.participation} value={this.state.participation} idEleve={this.state.id} change={this.onChange} className="small"/></td>        
+                    <td><MyInput id="nom" value={this.state.nom} change={this.onChange} type="text" placeholder="nom" className="small"/></td>
+                    <td><MyInput id="prenom" value={this.state.prenom} change={this.onChange} type="text" placeholder="prenom" className="small"/></td>
+                    <td><Select  id="sexe" options={this.props.sexe} value={this.state.sexe} change={this.onChange} className="small"/></td>
+                    <td><MyInput id="moyenne" value={this.state.moyenne} type="text" placeholder="12" change={this.onChange} className="small"/></td>
+                    <td><Select  id="comportement" options={this.props.comportement} value={this.state.comportement} change={this.onChange} className="small"/></td>
+                    <td><Select  id="travail" options={this.props.travail} value={this.state.travail} change={this.onChange} className="small"/></td>
+                    <td><Select  id="participation" options={this.props.participation} value={this.state.participation} change={this.onChange} className="small"/></td>        
                     <td><IoMdTrash className="red" id={this.state.id} onClick={this.delete} title="supprimer"/></td>           
                 </tr>;
 

@@ -23,9 +23,9 @@ class MyInput extends React.Component {
     onChange(e){
         e.preventDefault();
         let self = this;
-        let data = {    id : this.props.id,
-            value: e.currentTarget.value,
-            idEleve : this.props.idEleve
+        let data = {    
+            id : this.props.id,
+            value: e.currentTarget.value
         }
         this.setState({value : e.currentTarget.value},()=>{
             self.props.change(data);
