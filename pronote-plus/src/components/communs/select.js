@@ -46,7 +46,7 @@ class Select extends React.Component {
 
 
     render() {
-        return  <select id={this.props.id} onChange={this.onChange} value={this.state.value}>
+        return  <select id={this.props.id} onChange={this.onChange} value={this.state.value} className="select">
                     {this.props.options.map(option =>
                         <option key={option.id}   value={option.value}>{option.value}</option>    
                     )}
